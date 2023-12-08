@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('top');
 });
+
+// ログインフォーム表示
+Route::get('/login', [AuthController::class, 'showLogin'])
+    ->name('showLogin');
+// ログイン実行
+Route::post('/home', [AuthController::class, 'exeLogin'])
+    ->name('exeLogin');
+
+// 新規登録フォーム表示
+Route::get('/signup', [AuthController::class, 'showSignup'])
+    ->name('showSignup');
+
+// ログアウト
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->name('logout');
