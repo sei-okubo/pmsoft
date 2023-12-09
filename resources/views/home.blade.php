@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>マイページ</title>
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 <body>
   <header>
@@ -13,9 +16,15 @@
       <button>ログアウト</button>
     </form>
   </header>
-  <p>{{ session('success') }}</p>
   <section>
-    <h2>{{ Auth::user()->username }}さんのマイページ</h2>
+    @if (session('login_success'))
+      <script>
+        $(function(){
+          toastr.success('{{ session('login_success') }}');
+        });
+      </script>
+    @endif
+    <h2>{{ Auth::user()->name }}さんのマイページ</h2>
     <a href="">物件登録</a>
   </section>
   <main class="home-contents">
@@ -53,5 +62,6 @@
   <footer>
 
   </footer>
+  <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
