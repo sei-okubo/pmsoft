@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// ログイン前のみ
+Route::middleware(['guest'])->group(function() {
+    // トップ画面表示
+    Route::get('/', function () {
+        return view('top');
+    });
+
+    // ログインフォーム表示
+    Route::get('/login', [AuthController::class, 'showLogin'])
+    ->name('login');
+    // ログイン実行
+    Route::post('/exeLogin', [AuthController::class, 'exeLogin'])
+    ->name('exeLogin');
+
+    // 新規登録フォーム表示
+    Route::get('/signup', [AuthController::class, 'showSignup'])
+    ->name('showSignup');
+});
+
+// ログイン後のみ
+Route::middleware(['auth'])->group(function() {
+    // ホーム画面表示
+    Route::get('/home', function () {
+        return view('home');
+    });
+
+    // ログアウト
+    Route::post('/logout', [AuthController::class, 'logout'])
+        ->name('logout');
 });

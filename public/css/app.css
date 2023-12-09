@@ -1,0 +1,274 @@
+/* common */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+.alert {
+  font-weight: bold;
+}
+
+.alert-danger {
+  color: red;
+}
+
+.alert-success {
+  color: green;
+}
+
+/* header */
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 32px 32px 0;
+}
+
+header > a {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #fff;
+}
+
+header > a:hover {
+  background: #eee;
+}
+
+header button {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #fff;
+}
+
+header button:hover {
+  background: #eee;
+}
+
+/* section */
+/* トップ画像 */
+
+body > section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+body > section > h1 {
+  font-size: 64px;
+}
+
+body > section > a {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #fff;
+}
+
+body > section > a:hover {
+  background: #eee;
+}
+
+/* main */
+
+main {
+  margin: 0 32px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main.home-contents {
+  flex-direction: column;
+}
+
+/* main > section */
+
+main > section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main > section > h2 {
+  margin-left: 10%;
+}
+
+main > section > .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 10% 0;
+}
+
+main > section > .wrapper > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  width: 100%;
+  height: 64px;
+  margin-bottom: 16px;
+  background-color: #fff;
+}
+
+main > section > .wrapper > div:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
+main > section > .wrapper > a {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #fff;
+}
+
+main > section > .wrapper > a:hover {
+  background: #eee;
+}
+
+/* main > article */
+
+article {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+article > h2 {
+  margin-left: 10%;
+}
+
+article > .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 10% 0;
+}
+
+article > .wrapper > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  width: 100%;
+  height: 64px;
+  margin-bottom: 16px;
+  background-color: #fff;
+}
+
+article > .wrapper > div:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
+article > .wrapper > a {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #fff;
+}
+
+article > .wrapper > a:hover {
+  background: #eee;
+}
+
+/* ログイン画面 */
+
+.login-container {
+  width: 80%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+  text-align: center;
+  color: #333;
+}
+
+.login-container .signup-link {
+  text-align: center;
+}
+
+.login-container .signup-link a {
+  color: blue;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.form-group button:hover {
+  background-color: #45a049;
+}
