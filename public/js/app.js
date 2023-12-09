@@ -26,6 +26,13 @@
         toastr.error('ユーザー名が未入力です。');
         e.preventDefault();
       }
+
+      if (inputPassword.val() !== inputPasswordConf.val()) {
+        if (inputPassword.val() !== "" && inputPasswordConf.val() !== "") {
+          toastr.error('パスワード再入力と一致しません');
+          e.preventDefault();
+        }
+      }
     });
   });
 }

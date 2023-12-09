@@ -16,7 +16,7 @@
   <main>
     <div class="login-container">
       <h2>新規登録</h2>
-      <form method="POST" action="">
+      <form method="POST" action="{{ route('store') }}">
         @csrf
         <div class="form-group">
           <label for="name">ユーザー名:</label>
@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
           <label for="password-conf">パスワード再入力:</label>
-          <input type="text" id="password-conf" name="password-conf">
+          <input type="password" id="password-conf" name="password-conf">
         </div>
         <div class="form-group">
           <button type="submit" id="submit-btn">新規登録</button>
