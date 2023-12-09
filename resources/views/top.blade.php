@@ -5,12 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>トップページ</title>
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 <body>
   <header>
-    <a href="{{ route('showLogin') }}">ログイン</a>
+    <a href="{{ route('login') }}">ログイン</a>
   </header>
   <section>
+    @if (session('logout'))
+      <script>
+        $(function(){
+          toastr.info('{{ session('logout') }}');
+        });
+      </script>
+    @endif
     <h1>PM Soft</h1>
     <a href="{{ route('showSignup') }}">新規登録</a>
   </section>
@@ -35,5 +45,6 @@
   <footer>
 
   </footer>
+  <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

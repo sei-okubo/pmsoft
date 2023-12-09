@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログインページ</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 <body>
   <header>
@@ -14,7 +17,7 @@
     <div class="login-container">
       <h2>ログイン</h2>
       @if ($errors->any())
-      <div class="alert danger-alert">
+      <div class="alert alert-danger">
         <ul>
           @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
@@ -33,7 +36,7 @@
           <input type="password" id="password" name="password">
         </div>
         <div class="form-group">
-          <button type="submit">ログイン</button>
+          <button type="submit" id="submit-btn">ログイン</button>
         </div>
       </form>
       <div class="signup-link">
@@ -44,5 +47,6 @@
   <footer>
 
   </footer>
+  <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

@@ -24,10 +24,10 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('home')->with('success', 'ログインに成功しました');
+            return redirect('home')->with('login_success', 'ログインに成功しました');
         }
         return back()->withErrors([
-            'error' => 'ログインに失敗しました',
+            'login_error' => 'メールアドレスかパスワードが間違っています',
         ]);
     }
 
@@ -40,14 +40,14 @@ class AuthController extends Controller
     }
 
     /**
-     * @param UserRequest $request
+     * @param Request $request
      * @return View
      */
-    public function logout(UserRequest $request)
+    public function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/')->with('logout', 'ログアウトしました');
     }
 }

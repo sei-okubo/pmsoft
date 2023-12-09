@@ -20,6 +20,18 @@ li {
   list-style-type: none;
 }
 
+.alert {
+  font-weight: bold;
+}
+
+.alert-danger {
+  color: red;
+}
+
+.alert-success {
+  color: green;
+}
+
 /* header */
 
 header {
@@ -99,11 +111,6 @@ main {
 
 main.home-contents {
   flex-direction: column;
-}
-
-main .danger-alert {
-  color: red;
-  font-weight: bold;
 }
 
 /* main > section */
