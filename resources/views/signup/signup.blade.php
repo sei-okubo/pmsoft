@@ -16,6 +16,21 @@
   <main>
     <div class="login-container">
       <h2>新規登録</h2>
+      @if ($errors->any())
+      <div class="alert alert-danger">
+        <ul>
+          @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+      @endif
+
+      @if (session('login_error'))
+      <div class="alert alert-danger">
+        {{ session('signup_error') }}
+      </div>
+      @endif
       <form method="POST" action="{{ route('store') }}">
         @csrf
         <div class="form-group">

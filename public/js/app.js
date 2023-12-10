@@ -27,12 +27,15 @@
         e.preventDefault();
       }
 
-      if (inputPassword.val() !== inputPasswordConf.val()) {
-        if (inputPassword.val() !== "" && inputPasswordConf.val() !== "") {
-          toastr.error('パスワード再入力と一致しません');
-          e.preventDefault();
+      if (inputPasswordConf.val() !== undefined) {
+        if (inputPassword.val() !== inputPasswordConf.val()) {
+          if (inputPassword.val() !== "" && inputPasswordConf.val() !== "") {
+            toastr.error('パスワード再入力と一致しません');
+            e.preventDefault();
+          }
         }
       }
+
     });
   });
 }
