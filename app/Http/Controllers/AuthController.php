@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -37,6 +38,41 @@ class AuthController extends Controller
     public function showSignup()
     {
         return view('signup.signup');
+    }
+
+    /**
+     * @param UserRequest $request
+     */
+    public function storeUser(UserRequest $request)
+    {
+        if ($request->input('password') === $request->input('password-conf')) {
+            try {
+                // $userインスタンスを作成する
+                $user = new User();
+    
+                // 投稿フォームから送信されたデータを取得し、インスタンスの属性に代入する
+                $user->name = $request->input('name');
+                $user->email = $request->input('email');
+                $user->password = $request->input('password');
+    
+                // データベースに保存
+                $user->save();
+
+                $credentials = $request->only('email', 'password');
+                if (Auth::attempt($credentials)) {
+                    $request->session()->regenerate();
+                    return redirect('home')->with('login_success', '登録が完了しました！');
+                }
+            } catch (\Exception $e) {
+                return back()->withErrors([
+                    'signup_error' => '登録に失敗しました',
+                ]);
+            }
+        } else {
+            return back()->withErrors([
+                'signup_error' => 'パスワード再入力と一致しません',
+            ]);
+        }
     }
 
     /**

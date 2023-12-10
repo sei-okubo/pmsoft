@@ -31,6 +31,8 @@ Route::middleware(['guest'])->group(function() {
     // 新規登録フォーム表示
     Route::get('/signup', [AuthController::class, 'showSignup'])
     ->name('showSignup');
+    Route::post('/store', [AuthController::class, 'storeUser'])
+    ->name('store');
 });
 
 // ログイン後のみ

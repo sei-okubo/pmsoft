@@ -25,6 +25,12 @@
         </ul>
       </div>
       @endif
+
+      @if (session('login_error'))
+      <div class="alert alert-danger">
+        {{ session('login_error') }}
+      </div>
+      @endif
       <form method="POST" action="{{ route('exeLogin') }}">
         @csrf
         <div class="form-group">
