@@ -23,7 +23,7 @@ class UserRequest extends FormRequest
     {
         return [
             'username' => 'max:255',
-            'email' => 'required|max:255',
+            'email' => 'required|email:filter|max:255',
             'password' => 'required|max:255',
         ];
     }

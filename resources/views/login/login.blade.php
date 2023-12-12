@@ -47,7 +47,7 @@
       </form>
       <div class="links">
         <div>
-          <a href="">パスワードを忘れた方はこちら</a>
+          <a href="{{ route('password_reset.email.form') }}">パスワードを忘れた方はこちら</a>
         </div>
         <div>
           <a href="{{ route('showSignup') }}">新規登録はこちら</a>
