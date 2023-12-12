@@ -232,11 +232,17 @@ article > .wrapper > a:hover {
   color: #333;
 }
 
-.login-container .signup-link {
+.login-container .links {
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
-.login-container .signup-link a {
+.login-container .links > :nth-child(2) {
+  margin-top: 8px;
+}
+
+.login-container .links div a {
   color: blue;
 }
 
