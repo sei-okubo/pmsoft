@@ -53,8 +53,10 @@
           <button type="submit" id="submit-btn">新規登録</button>
         </div>
       </form>
-      <div class="signup-link">
-        <a href="{{ route('login') }}">ログインはこちら</a>
+      <div class="links">
+        <div>
+          <a href="{{ route('login') }}">ログインはこちら</a>
+        </div>
       </div>
     </div>
   </main>

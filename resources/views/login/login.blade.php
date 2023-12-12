@@ -45,8 +45,13 @@
           <button type="submit" id="submit-btn">ログイン</button>
         </div>
       </form>
-      <div class="signup-link">
-        <a href="{{ route('showSignup') }}">新規登録はこちら</a>
+      <div class="links">
+        <div>
+          <a href="">パスワードを忘れた方はこちら</a>
+        </div>
+        <div>
+          <a href="{{ route('showSignup') }}">新規登録はこちら</a>
+        </div>
       </div>
     </div>
   </main>
