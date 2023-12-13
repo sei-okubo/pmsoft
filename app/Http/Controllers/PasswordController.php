@@ -19,6 +19,7 @@ class PasswordController extends Controller
     private $userTokenRepository;
 
     private const MAIL_SENDED_SESSION_KEY = 'user_reset_password_mail_sended_action';
+    private const UPDATE_PASSWORD_SESSION_KEY = 'user_update_password_action';
 
     public function __construct(
         UserRepositoryInterface $userRepository,
@@ -118,7 +119,7 @@ class PasswordController extends Controller
             Log::info(__METHOD__ . '...ID:' . $userToken->user_id . 'のユーザーのパスワードを更新しました。');
         } catch (Exception $e) {
             Log::error(__METHOD__ . '...ユーザーのパスワードの更新に失敗しました。...error_message = ' . $e);
-            return redirect()->route('password_reset.email_form')
+            return redirect()->route('password_reset.email.form')
                 ->with('flash_message', __('処理に失敗しました。時間をおいて再度お試しください。'));
         }
         // パスワードリセット完了画面への不正アクセスを防ぐためのセッションキー

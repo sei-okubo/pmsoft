@@ -16,7 +16,11 @@
   <main>
     <div class="login-container">
       <h2>パスワードリセットが完了しました</h2>
-      <a href="{{ route('login') }}">ログイン画面へ</a>
+      <div class="links">
+        <div>
+          <a href="{{ route('login') }}">ログイン画面へ</a>
+        </div>
+      </div>
     </div>
   </main>
   <footer>

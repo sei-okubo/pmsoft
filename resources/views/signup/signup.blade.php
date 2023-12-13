@@ -46,8 +46,8 @@
           <input type="password" id="password" name="password">
         </div>
         <div class="form-group">
-          <label for="password-conf">パスワード再入力:</label>
-          <input type="password" id="password-conf" name="password-conf">
+          <label for="password_confirmation">パスワード再入力:</label>
+          <input type="password" id="password_confirmation" name="password_confirmation">
         </div>
         <div class="form-group">
           <button type="submit" id="submit-btn">新規登録</button>
