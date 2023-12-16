@@ -3,7 +3,7 @@
 {
   $(function() {
     $("#submit-btn").on("click", function(e) {
-      const inputPasswordConf = $("#password-conf");
+      const inputPasswordConf = $("#password_confirmation");
       if (inputPasswordConf.val() === "") {
         toastr.error('パスワード再入力が未入力です。');
         e.preventDefault();

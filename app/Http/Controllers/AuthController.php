@@ -45,7 +45,7 @@ class AuthController extends Controller
      */
     public function storeUser(UserRequest $request)
     {
-        if ($request->input('password') === $request->input('password-conf')) {
+        if ($request->input('password') === $request->input('password_confirmation')) {
             try {
                 // $userインスタンスを作成する
                 $user = new User();
