@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\PropertyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,20 +21,16 @@ Route::middleware(['guest'])->group(function() {
     // トップ画面表示
     Route::get('/', function () {
         return view('top');
-    });
+    })->name('top');
 
     // ログインフォーム表示
-    Route::get('/login', [AuthController::class, 'showLogin'])
-    ->name('login');
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     // ログイン実行
-    Route::post('/exeLogin', [AuthController::class, 'exeLogin'])
-    ->name('exeLogin');
+    Route::post('/exeLogin', [AuthController::class, 'exeLogin'])->name('exeLogin');
 
     // 新規登録フォーム表示
-    Route::get('/signup', [AuthController::class, 'showSignup'])
-    ->name('showSignup');
-    Route::post('/store', [AuthController::class, 'storeUser'])
-    ->name('store');
+    Route::get('/signup', [AuthController::class, 'showSignup'])->name('showSignup');
+    Route::post('/store', [AuthController::class, 'storeUser'])->name('storeUser');
 
     // パスワードリセット関連
     Route::prefix('password_reset')->name('password_reset.')->group(function () {
@@ -59,9 +56,11 @@ Route::middleware(['auth'])->group(function() {
     // ホーム画面表示
     Route::get('/home', function () {
         return view('home');
-    });
+    })->name('home');
 
     // ログアウト
-    Route::post('/logout', [AuthController::class, 'logout'])
-        ->name('logout');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // 物件登録画面表示
+    Route::get('/property_form', [PropertyController::class, 'showPropertyForm'])->name('showPropertyForm');
 });
