@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use App\Models\Property;
+use App\Models\Income;
+use App\Models\Expenditure;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -29,6 +32,17 @@ class AuthController extends Controller
         }
         return back()->withErrors([
             'error' => 'メールアドレスかパスワードが間違っています',
+        ]);
+    }
+
+    /**
+     * 
+     */
+    public function showHome()
+    {
+        $properties = Property::all();
+        return view('home', [
+            'properties' => $properties,
         ]);
     }
 

@@ -21,17 +21,16 @@
 <main class="home-contents">
   <section>
     <h2>物件一覧</h2>
-    <div class="wrapper">
-      <div>
-        <a href="">
-          <p>テスト物件1</p>
-        </a>
-      </div>
-      <div>
-        <a href="">
-          <p>テスト物件2</p>
-        </a>
-      </div>
+    <div class="wrapper properties-wrapper">
+      @foreach ($properties as $property)
+        @if ($property->user_id === Auth::user()->id)
+        <div>
+          <a href="">
+            <p>{{ $property->property_name }}</p>
+          </a>
+        </div>
+        @endif
+      @endforeach
     </div>
   </section>
   <article>

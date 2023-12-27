@@ -1,6 +1,10 @@
 'use strict'
 
 {
+  toastr.options = {
+    "positionClass": "toast-bottom-right",
+  }
+  
   $(function() {
     $("#submit-btn").on("click", function(e) {
       // ログイン＆新規登録
@@ -176,7 +180,7 @@ if (income_btn !== null) {
 // その他支出フォーム作成
 let expenditureFormCount = 0;
 const expenditure_btn = document.querySelector('#add_expenditure_btn');
-if (income_btn !== null) {
+if (expenditure_btn !== null) {
   expenditure_btn.addEventListener('click', () => {
     expenditureFormCount += 1;
 
@@ -249,3 +253,13 @@ function delete_form_element(name) {
   const elem = document.querySelector('.' + name);
   elem.remove();
 };
+
+let properties = document.querySelector('.properties-wrapper');
+if (properties !== null) {
+  if (properties.childElementCount === 0) {
+    const unexistProperty = document.createElement('p');
+    unexistProperty.textContent = '物件が登録されていません';
+    unexistProperty.classList.add('unexist');
+    properties.appendChild(unexistProperty);
+  }
+}

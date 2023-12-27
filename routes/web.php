@@ -54,9 +54,11 @@ Route::middleware(['guest'])->group(function() {
 // ログイン後のみ
 Route::middleware(['auth'])->group(function() {
     // ホーム画面表示
-    Route::get('/home', function () {
-        return view('home');
-    })->name('home');
+    // Route::get('/home', function () {
+    //     return view('home');
+    // })->name('home');
+
+    Route::get('/home', [AuthController::class, 'showHome'])->name('home');
 
     // ログアウト
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
