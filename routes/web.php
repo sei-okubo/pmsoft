@@ -63,4 +63,6 @@ Route::middleware(['auth'])->group(function() {
 
     // 物件登録画面表示
     Route::get('/property_form', [PropertyController::class, 'showPropertyForm'])->name('showPropertyForm');
+
+    Route::post('/storeProperty', [PropertyController::class, 'storeProperty'])->name('storeProperty');
 });

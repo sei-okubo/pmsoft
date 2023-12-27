@@ -25,10 +25,10 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('home')->with('login_success', 'ログインに成功しました');
+            return redirect('home')->with('success', 'ログインに成功しました');
         }
         return back()->withErrors([
-            'login_error' => 'メールアドレスかパスワードが間違っています',
+            'error' => 'メールアドレスかパスワードが間違っています',
         ]);
     }
 
@@ -61,16 +61,16 @@ class AuthController extends Controller
                 $credentials = $request->only('email', 'password');
                 if (Auth::attempt($credentials)) {
                     $request->session()->regenerate();
-                    return redirect('home')->with('login_success', '登録が完了しました！');
+                    return redirect('home')->with('success', '登録が完了しました！');
                 }
             } catch (\Exception $e) {
                 return back()->withErrors([
-                    'signup_error' => '登録に失敗しました',
+                    'error' => '登録に失敗しました',
                 ]);
             }
         } else {
             return back()->withErrors([
-                'signup_error' => 'パスワード再入力と一致しません',
+                'error' => 'パスワード再入力と一致しません',
             ]);
         }
     }

@@ -8,10 +8,10 @@
 
 @section('content')
 <section>
-  @if (session('login_success'))
+  @if (session('success'))
     <script>
       $(function(){
-        toastr.success('{{ session('login_success') }}');
+        toastr.success('{{ session('success') }}');
       });
     </script>
   @endif
