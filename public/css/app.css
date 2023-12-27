@@ -42,6 +42,10 @@ fieldset {
   color: red
 }
 
+.unexist {
+  color: #bbb;
+}
+
 /* header */
 
 header {
