@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class PropertyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,16 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => 'max:255',
-            'email' => 'required|email:filter|max:255',
-            'password' => 'required|max:255',
+            'user_id' => 'required|integer',
+            'property_name' => 'required|max:255',
+            'capital' => 'required|max:32',
+            'expense' => 'required|max:32',
+            'loan' => 'integer|max:32',
+            'loan_period' => 'max:32',
+            'interest' => 'max:32',
+            'rent' => 'required|max:32',
+            'fixed_expenditure' => 'max:32',
+            'repay' => 'max:32',
         ];
     }
 }
