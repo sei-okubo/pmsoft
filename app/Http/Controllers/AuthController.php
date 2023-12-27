@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use App\Models\Property;
+use App\Models\Income;
+use App\Models\Expenditure;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -25,10 +28,21 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('home')->with('login_success', 'ログインに成功しました');
+            return redirect('home')->with('success', 'ログインに成功しました');
         }
         return back()->withErrors([
-            'login_error' => 'メールアドレスかパスワードが間違っています',
+            'error' => 'メールアドレスかパスワードが間違っています',
+        ]);
+    }
+
+    /**
+     * 
+     */
+    public function showHome()
+    {
+        $properties = Property::all();
+        return view('home', [
+            'properties' => $properties,
         ]);
     }
 
@@ -61,16 +75,16 @@ class AuthController extends Controller
                 $credentials = $request->only('email', 'password');
                 if (Auth::attempt($credentials)) {
                     $request->session()->regenerate();
-                    return redirect('home')->with('login_success', '登録が完了しました！');
+                    return redirect('home')->with('success', '登録が完了しました！');
                 }
             } catch (\Exception $e) {
                 return back()->withErrors([
-                    'signup_error' => '登録に失敗しました',
+                    'error' => '登録に失敗しました',
                 ]);
             }
         } else {
             return back()->withErrors([
-                'signup_error' => 'パスワード再入力と一致しません',
+                'error' => 'パスワード再入力と一致しません',
             ]);
         }
     }

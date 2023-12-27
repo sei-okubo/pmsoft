@@ -15,9 +15,9 @@
       </ul>
     </div>
     @endif
-    @if (session('signup_error'))
+    @if (session('error'))
     <div class="alert alert-danger">
-      {{ session('signup_error') }}
+      {{ session('error') }}
     </div>
     @endif
     <form method="POST" action="{{ route('storeUser') }}">

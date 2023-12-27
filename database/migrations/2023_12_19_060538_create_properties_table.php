@@ -14,14 +14,15 @@ return new class extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('name');
+            $table->string('property_name');
             $table->integer('capital');
             $table->integer('expense');
-            $table->integer('loan')->nullable();
-            $table->integer('loan_period')->nullable();
+            $table->integer('loan')->default(0);
+            $table->integer('loan_period')->default(0);
+            $table->integer('interest')->default(0);
             $table->integer('rent');
-            $table->integer('fixed_expenditure')->nullable();
-            $table->integer('repay')->nullable();
+            $table->integer('fixed_expenditure')->default(0);
+            $table->integer('repay')->default(0);
             $table->timestamps();
         });
     }
