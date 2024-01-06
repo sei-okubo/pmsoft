@@ -21,6 +21,14 @@ class AuthController extends Controller
     }
 
     /**
+     * @return View
+     */
+    public function showLoginAdmin()
+    {
+        return view('login.login_admin');
+    }
+
+    /**
      * @param UserRequest $request
      */
     public function exeLogin(UserRequest $request)
@@ -36,6 +44,21 @@ class AuthController extends Controller
     }
 
     /**
+     * @param UserRequest $request
+     */
+    public function exeLoginAdmin(UserRequest $request)
+    {
+        $credentials = $request->only('email', 'password', 'role');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route('admin.home')->with('success', 'ログインに成功しました');
+        }
+        return back()->withErrors([
+            'error' => 'メールアドレスかパスワードが間違っているか，管理者権限がありません',
+        ]);
+    }
+
+    /**
      * 
      */
     public function showHome()
@@ -43,6 +66,17 @@ class AuthController extends Controller
         $properties = Property::all();
         return view('home', [
             'properties' => $properties,
+        ]);
+    }
+
+    /**
+     * 
+     */
+    public function showHomeAdmin()
+    {
+        $users = User::all();
+        return view('admin.home_admin', [
+            'users' => $users,
         ]);
     }
 
