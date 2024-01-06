@@ -25,8 +25,16 @@ Route::middleware(['guest'])->group(function() {
 
     // ログインフォーム表示
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+    
     // ログイン実行
     Route::post('/exeLogin', [AuthController::class, 'exeLogin'])->name('exeLogin');
+    
+    Route::prefix('admin')->name('admin.')->group(function () {
+        // 管理者ログインフォーム表示
+        Route::get('/login', [AuthController::class, 'showLoginAdmin'])->name('login');
+        // 管理者ログイン実行
+        Route::post('/exeLogin', [AuthController::class, 'exeLoginAdmin'])->name('exeLogin');
+    });
 
     // 新規登録フォーム表示
     Route::get('/signup', [AuthController::class, 'showSignup'])->name('showSignup');
@@ -60,6 +68,10 @@ Route::middleware(['auth'])->group(function() {
 
     Route::get('/home', [AuthController::class, 'showHome'])->name('home');
 
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/', [AuthController::class, 'showHomeAdmin'])->name('home');
+        // Route::get('/article_form', [ArticleController::class, 'showArticleForm'])->name('showArticleForm');
+    });
     // ログアウト
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
