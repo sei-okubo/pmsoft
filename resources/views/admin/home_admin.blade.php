@@ -15,6 +15,13 @@
       });
     </script>
   @endif
+  @if (session('error'))
+    <script>
+      $(function(){
+        toastr.error('{{ session('error') }}');
+      });
+    </script>
+  @endif
   <h2>{{ Auth::user()->name }}さんの管理ページ</h2>
   <a href="{{ route('showPropertyForm') }}">記事登録</a>
 </section>
@@ -36,13 +43,21 @@
   </article>
   <section>
     <h2>ユーザ一覧</h2>
-    <div class="wrapper users-wrapper">
+    <div class="users-wrapper">
       @foreach ($users as $user)
+      <div class="user-wrapper">
         <div>
-          <a href="">
-            <p>{{ $user->name }}</p>
-          </a>
+          <p>{{ $user->name }}</p>
         </div>
+        <div>
+          <form method="post" action="{{ route('admin.deleteUser') }}">
+            @method('PATCH')
+            @csrf
+            <input type="hidden" name="userId" value="{{ $user->id }}">
+            <input type="submit" class="delete_btn" value="削除">
+          </form>
+        </div>
+      </div>
       @endforeach
     </div>
   </section>

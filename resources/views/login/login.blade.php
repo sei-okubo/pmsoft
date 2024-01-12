@@ -22,6 +22,7 @@
     @endif
     <form method="POST" action="{{ route('exeLogin') }}">
       @csrf
+      <input type="hidden" name="del_flug" value="0">
       <div class="form-group">
         <label for="email">メールアドレス:</label>
         <input type="text" id="email" name="email">

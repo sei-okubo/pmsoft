@@ -4,7 +4,7 @@
   toastr.options = {
     "positionClass": "toast-bottom-right",
   }
-  
+
   $(function() {
     $("#submit-btn").on("click", function(e) {
       // ログイン＆新規登録
@@ -262,4 +262,14 @@ if (properties !== null) {
     unexistProperty.classList.add('unexist');
     properties.appendChild(unexistProperty);
   }
+}
+
+// ユーザー削除
+const delete_btn = document.querySelector('.delete_btn');
+if (delete_btn !== null) {
+  delete_btn.addEventListener('click', (e) => {
+    if (!confirm('削除してよろしいですか？')) {
+      e.preventDefault();
+    }
+  });
 }
