@@ -61,15 +61,15 @@ Route::middleware(['guest'])->group(function() {
 
 // ログイン後のみ
 Route::middleware(['auth'])->group(function() {
-    // ホーム画面表示
-    // Route::get('/home', function () {
-    //     return view('home');
-    // })->name('home');
-
+    // ホーム表示
     Route::get('/home', [AuthController::class, 'showHome'])->name('home');
 
+    // 管理者
     Route::prefix('admin')->name('admin.')->group(function () {
+        // ホーム表示
         Route::get('/', [AuthController::class, 'showHomeAdmin'])->name('home');
+        // ユーザ削除
+        Route::patch('/deleteUser', [AuthController::class, 'deleteUser'])->name('deleteUser');
         // Route::get('/article_form', [ArticleController::class, 'showArticleForm'])->name('showArticleForm');
     });
     // ログアウト
@@ -78,5 +78,6 @@ Route::middleware(['auth'])->group(function() {
     // 物件登録画面表示
     Route::get('/property_form', [PropertyController::class, 'showPropertyForm'])->name('showPropertyForm');
 
+    // 物件登録処理
     Route::post('/storeProperty', [PropertyController::class, 'storeProperty'])->name('storeProperty');
 });

@@ -12,6 +12,10 @@ a {
   color: black;
 }
 
+p {
+  margin: 0;
+}
+
 ul {
   padding: 0;
 }
@@ -167,8 +171,6 @@ main > section > .wrapper > div:hover {
 
 main > section > .wrapper > a {
   border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 120px;
   height: 40px;
   line-height: 40px;
@@ -180,6 +182,48 @@ main > section > .wrapper > a:hover {
   background: #eee;
 }
 
+/* main > users */
+
+main > section > .users-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 10% 0;
+}
+
+main > section > .users-wrapper > .user-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 64px;
+  margin-bottom: 16px;
+}
+
+main > section > .users-wrapper > .user-wrapper > :first-child {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  width: 70%;
+  height: 64px;
+  margin-right: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main > section > .users-wrapper > .user-wrapper > :last-child {
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+main > section > .users-wrapper > .user-wrapper > :last-child .delete_btn {
+  height: 64px;
+  width: 64px;
+}
+ 
 /* main > article */
 
 article {
