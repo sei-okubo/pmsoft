@@ -3,7 +3,7 @@
 @section('title', 'トップページ')
 
 @section('header')
-@include('header.guest_header')
+@include('header')
 @endsection
 
 @section('content')
@@ -22,16 +22,16 @@
   <article>
     <h2>新着記事</h2>
     <div class="wrapper">
-      <div>
-        <a href="">
-          <p>テスト記事1</p>
+    @foreach ($articles as $article)
+      <div class="article-wrapper">
+        @if ($article->image !== null)
+        <img src="{{ asset(Storage::url($article->image)) }}" alt="記事画像">
+        @endif
+        <a href="{{ route('showArticleDetail', $article->id) }}">
+          <p>{{ $article->title }}</p>
         </a>
       </div>
-      <div>
-        <a href="">
-          <p>テスト記事2</p>
-        </a>
-      </div>
+    @endforeach
       <a href="">記事一覧</a>
     </div>
   </article>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +17,13 @@ use App\Http\Controllers\PropertyController;
 |
 */
 
+// 記事詳細画面表示
+Route::get('/article/{id}', [ArticleController::class, 'showArticleDetail'])->name('showArticleDetail');
+
 // ログイン前のみ
 Route::middleware(['guest'])->group(function() {
     // トップ画面表示
-    Route::get('/', function () {
-        return view('top');
-    })->name('top');
+    Route::get('/', [AuthController::class, 'top'])->name('top');
 
     // ログインフォーム表示
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -64,20 +66,25 @@ Route::middleware(['auth'])->group(function() {
     // ホーム表示
     Route::get('/home', [AuthController::class, 'showHome'])->name('home');
 
+    // ログアウト
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // 物件登録画面表示
+    Route::get('/property_form', [PropertyController::class, 'showPropertyForm'])->name('showPropertyForm');
+    // 物件登録処理
+    Route::post('/storeProperty', [PropertyController::class, 'storeProperty'])->name('storeProperty');
+    // 物件詳細画面表示
+    Route::get('/property/{id}', [PropertyController::class, 'showPropertyDetail'])->name('showPropertyDetail');
+
     // 管理者
     Route::prefix('admin')->name('admin.')->group(function () {
         // ホーム表示
         Route::get('/', [AuthController::class, 'showHomeAdmin'])->name('home');
         // ユーザ削除
         Route::patch('/deleteUser', [AuthController::class, 'deleteUser'])->name('deleteUser');
-        // Route::get('/article_form', [ArticleController::class, 'showArticleForm'])->name('showArticleForm');
+        // 記事登録画面表示
+        Route::get('/article_form', [ArticleController::class, 'showArticleForm'])->name('showArticleForm');
+        // 記事登録処理
+        Route::post('/storeArticle', [ArticleController::class, 'storeArticle'])->name('storeArticle');
     });
-    // ログアウト
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-    // 物件登録画面表示
-    Route::get('/property_form', [PropertyController::class, 'showPropertyForm'])->name('showPropertyForm');
-
-    // 物件登録処理
-    Route::post('/storeProperty', [PropertyController::class, 'storeProperty'])->name('storeProperty');
 });

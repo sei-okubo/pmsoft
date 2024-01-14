@@ -28,6 +28,7 @@ class PropertyController extends Controller
 
     /**
      * 物件登録
+     * @param PropertyRequest $request
      */
     public function storeProperty(PropertyRequest $request)
     {
@@ -77,10 +78,30 @@ class PropertyController extends Controller
             $request->session()->regenerate();
             return redirect('home')->with('success', '物件登録が完了しました！');
         } catch (\Exception $e) {
-            dd($e);
             return back()->withErrors([
                 'error' => '物件登録に失敗しました',
             ]);
         }
+
+    }
+
+    /**
+     * 物件詳細
+     * @param int $id
+     * @return View
+     */
+    public function showPropertyDetail($id)
+    {
+        $property = $this->property->find($id);
+        if (is_null($property)) {
+            return redirect('home')->with('error', '物件情報が取得できませんでした');
+        }
+        $incomes = $this->income->where('property_id', '=', $id);
+        $expenditures = $this->expenditure->where('property_id', '=', $id);
+        return view('properties.property_detail', [
+            'property' => $property,
+            'incomes' => $incomes,
+            'expenditures' => $expenditures,
+        ]);
     }
 }
