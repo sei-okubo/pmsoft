@@ -101,6 +101,19 @@
         toastr.error('物件名が未入力です。');
         e.preventDefault();
       }
+
+      // 記事登録
+      const text = $("#text");
+      if (text.val() === "") {
+        toastr.error('本文が未入力です。');
+        e.preventDefault();
+      }
+
+      const title = $("#title");
+      if (title.val() === "") {
+        toastr.error('タイトルが未入力です。');
+        e.preventDefault();
+      }
     });
   });
 }
@@ -272,4 +285,12 @@ if (delete_btn !== null) {
       e.preventDefault();
     }
   });
+}
+
+// プレビュー
+function preview(elem) {
+  const file = elem.files[0];
+  const isOK = file?.type?.startsWith('image/');
+  const image = (file && isOK) ? `<img src=${URL.createObjectURL(file)}>` : '';
+  elem.nextElementSibling.innerHTML = image;
 }

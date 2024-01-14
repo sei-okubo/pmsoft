@@ -8,10 +8,22 @@ use App\Models\User;
 use App\Models\Property;
 use App\Models\Income;
 use App\Models\Expenditure;
+use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    /**
+     * @return View
+     */
+    public function top()
+    {
+        $articles = Article::orderBy('id', 'desc')->take(3)->get();
+        return view('top', [
+            'articles' => $articles,
+        ]);
+    }
+
     /**
      * @return View
      */
@@ -63,21 +75,25 @@ class AuthController extends Controller
      */
     public function showHome()
     {
-        $properties = Property::all();
+        $properties = Property::orderBy('id', 'desc')->get();
+        $articles = Article::orderBy('id', 'desc')->get();
         return view('home', [
             'properties' => $properties,
+            'articles' => $articles,
         ]);
     }
 
     /**
-     * 
+     * @return View
      */
     public function showHomeAdmin()
     {
         $users = User::where('del_flug', '=', '0')->get();
+        $articles = Article::orderBy('id', 'desc')->get();
         // $users = User::all();
         return view('admin.home_admin', [
             'users' => $users,
+            'articles' => $articles,
         ]);
     }
 
