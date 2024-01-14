@@ -34,6 +34,10 @@ textarea {
   resize:none;
 }
 
+img {
+  width: 100%;
+}
+
 .alert {
   font-weight: bold;
 }
@@ -52,6 +56,10 @@ textarea {
 
 .unexist {
   color: #bbb;
+}
+
+.flex {
+  display: flex;
 }
 
 /* header */
@@ -427,6 +435,22 @@ article .article-wrapper > a > p {
 
 .form-group button:hover {
   background-color: #45a049;
+}
+
+.form-group button.edit-btn {
+  background-color: #A4C6FF;
+}
+
+.form-group button.edit-btn:hover {
+  background-color: #8EB8FF;
+}
+
+.form-group button.delete_btn {
+  background-color: #FFABCE;
+}
+
+.form-group button.delete_btn:hover {
+  background-color: #FF97C2;
 }
 
 /* 物件登録画面 */

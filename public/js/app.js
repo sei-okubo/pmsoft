@@ -286,3 +286,11 @@ if (delete_btn !== null) {
     }
   });
 }
+
+// プレビュー
+function preview(elem) {
+  const file = elem.files[0];
+  const isOK = file?.type?.startsWith('image/');
+  const image = (file && isOK) ? `<img src=${URL.createObjectURL(file)}>` : '';
+  elem.nextElementSibling.innerHTML = image;
+}

@@ -34,7 +34,7 @@
         @if ($article->image !== null)
         <img src="{{ asset(Storage::url($article->image)) }}" alt="記事画像">
         @endif
-        <a href="">
+        <a href="{{ route('admin.showArticleDetail', $article->id) }}">
           <p>{{ $article->title }}</p>
         </a>
       </div>

@@ -57,20 +57,66 @@
       <div class="under">
         <div class="left">
           <div class="income_wrapper">
-          </div>
-          <div>
-            <input type="button" id="add_income_btn" value="その他固定収入を追加する">
+          <?php $i = 1; ?>
+            @foreach($incomes as $income)
+            <div class="form-group">
+              <h3>その他固定収入 {{ $i }}</h3>
+              <p>{{ $income->income_name }}</p>
+              <p>
+                @if($income->frequency === 1)
+                月額
+                @else
+                年額
+                @endif
+              </p>
+              <p>{{ $income->amount }}<span>円</span></p>
+            </div>
+            <?php $i++; ?>
+            @endforeach
           </div>
         </div>
         <div class="right">
-          <div class="expenditure_wrapper"></div>
-          <div>
-            <input type="button" id="add_expenditure_btn" value="その他固定支出を追加する">
+          <div class="expenditure_wrapper">
+          <?php $i = 1; ?>
+            @foreach($expenditures as $expenditure)
+            <div class="form-group">
+              <h3>その他固定支出 {{ $i }}</h3>
+              <p>{{ $expenditure->expenditure_name }}</p>
+              <p>
+                @if($expenditure->frequency === 1)
+                月額
+                @else
+                年額
+                @endif
+              </p>
+              <p>{{ $expenditure->amount }}<span>円</span></p>
+            </div>
+            <?php $i++; ?>
+            @endforeach
           </div>
         </div>
       </div>
     </div>
     <div class="links">
+      <div class="flex">
+        <div class="left">
+          <div class="form-group">
+            <form method="get" action="{{ route('showEditProperty', $property->id) }}">
+              <button type="submit" class="edit-btn">物件編集</button>
+            </form>
+          </div>
+        </div>
+        <div class="right">
+          <div class="form-group">
+            <form method="post" action="{{ route('exeDeleteProperty') }}">
+              @method('DELETE')
+              @csrf
+              <input type="hidden" name="propertyId" value="{{ $property->id }}">
+              <button type="submit" class="delete_btn">物件削除</button>
+            </form>
+          </div>
+        </div>
+      </div>
       <div>
         <a href="{{ route('home') }}">戻る</a>
       </div>

@@ -24,14 +24,14 @@ class PropertyRequest extends FormRequest
         return [
             'user_id' => 'required|integer',
             'property_name' => 'required|max:255',
-            'capital' => 'required|max:32',
-            'expense' => 'required|max:32',
-            'loan' => 'integer|max:32',
-            'loan_period' => 'max:32',
-            'interest' => 'max:32',
-            'rent' => 'required|max:32',
-            'fixed_expenditure' => 'max:32',
-            'repay' => 'max:32',
+            'capital' => 'integer|required',
+            'expense' => 'integer|required',
+            'loan' => 'integer',
+            'loan_period' => 'integer',
+            'interest' => 'integer',
+            'rent' => 'integer|required',
+            'fixed_expenditure' => 'integer',
+            'repay' => 'integer',
         ];
     }
 }
