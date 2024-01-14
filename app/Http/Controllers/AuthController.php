@@ -8,10 +8,22 @@ use App\Models\User;
 use App\Models\Property;
 use App\Models\Income;
 use App\Models\Expenditure;
+use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    /**
+     * @return View
+     */
+    public function top()
+    {
+        $articles = Article::orderBy('id', 'desc')->take(3)->get();
+        return view('top', [
+            'articles' => $articles,
+        ]);
+    }
+
     /**
      * @return View
      */
@@ -33,7 +45,7 @@ class AuthController extends Controller
      */
     public function exeLogin(UserRequest $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('email', 'password', 'del_flug');
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect('home')->with('success', 'ログインに成功しました');
@@ -48,13 +60,13 @@ class AuthController extends Controller
      */
     public function exeLoginAdmin(UserRequest $request)
     {
-        $credentials = $request->only('email', 'password', 'role');
+        $credentials = $request->only('email', 'password', 'del_flug', 'role');
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->route('admin.home')->with('success', 'ログインに成功しました');
         }
         return back()->withErrors([
-            'error' => 'メールアドレスかパスワードが間違っているか，管理者権限がありません',
+            'error' => 'メールアドレスかパスワードが間違っています',
         ]);
     }
 
@@ -63,20 +75,25 @@ class AuthController extends Controller
      */
     public function showHome()
     {
-        $properties = Property::all();
+        $properties = Property::orderBy('id', 'desc')->get();
+        $articles = Article::orderBy('id', 'desc')->get();
         return view('home', [
             'properties' => $properties,
+            'articles' => $articles,
         ]);
     }
 
     /**
-     * 
+     * @return View
      */
     public function showHomeAdmin()
     {
-        $users = User::all();
+        $users = User::where('del_flug', '=', '0')->get();
+        $articles = Article::orderBy('id', 'desc')->get();
+        // $users = User::all();
         return view('admin.home_admin', [
             'users' => $users,
+            'articles' => $articles,
         ]);
     }
 
@@ -133,5 +150,24 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/')->with('logout', 'ログアウトしました');
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function deleteUser(Request $request)
+    {
+        try {
+            $id = $request->input('userId');
+            $user = User::find($id);
+            $user->del_flug = 1;
+            $user->save();
+            return redirect()->route('admin.home')->with('success', '削除が完了しました');
+        } catch (\Exception $e) {
+            return back()->withErrors([
+                'error' => '削除に失敗しました',
+            ]);
+        }
+       
     }
 }

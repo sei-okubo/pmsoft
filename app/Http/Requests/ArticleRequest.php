@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PropertyRequest extends FormRequest
+class ArticleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,16 +22,9 @@ class PropertyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|integer',
-            'property_name' => 'required|max:255',
-            'capital' => 'integer|required',
-            'expense' => 'integer|required',
-            'loan' => 'integer',
-            'loan_period' => 'integer',
-            'interest' => 'integer',
-            'rent' => 'integer|required',
-            'fixed_expenditure' => 'integer',
-            'repay' => 'integer',
+            'title' => 'required|max:255',
+            'image' => 'max:255',
+            'text' => 'required',
         ];
     }
 }

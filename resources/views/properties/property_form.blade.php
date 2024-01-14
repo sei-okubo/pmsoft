@@ -3,18 +3,11 @@
 @section('title', '物件登録ページ')
 
 @section('header')
-@include('header.auth_header')
+@include('header')
 @endsection
 
 @section('content')
 <main>
-  @if (session('success'))
-    <script>
-      $(function(){
-        toastr.success('{{ session('success') }}');
-      });
-    </script>
-  @endif
   @if (session('error'))
     <script>
       $(function(){

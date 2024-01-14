@@ -4,7 +4,7 @@
   toastr.options = {
     "positionClass": "toast-bottom-right",
   }
-  
+
   $(function() {
     $("#submit-btn").on("click", function(e) {
       // ログイン＆新規登録
@@ -99,6 +99,19 @@
       const propertyName = $("#property_name");
       if (propertyName.val() === "") {
         toastr.error('物件名が未入力です。');
+        e.preventDefault();
+      }
+
+      // 記事登録
+      const text = $("#text");
+      if (text.val() === "") {
+        toastr.error('本文が未入力です。');
+        e.preventDefault();
+      }
+
+      const title = $("#title");
+      if (title.val() === "") {
+        toastr.error('タイトルが未入力です。');
         e.preventDefault();
       }
     });
@@ -262,4 +275,22 @@ if (properties !== null) {
     unexistProperty.classList.add('unexist');
     properties.appendChild(unexistProperty);
   }
+}
+
+// ユーザー削除
+const delete_btn = document.querySelector('.delete_btn');
+if (delete_btn !== null) {
+  delete_btn.addEventListener('click', (e) => {
+    if (!confirm('削除してよろしいですか？')) {
+      e.preventDefault();
+    }
+  });
+}
+
+// プレビュー
+function preview(elem) {
+  const file = elem.files[0];
+  const isOK = file?.type?.startsWith('image/');
+  const image = (file && isOK) ? `<img src=${URL.createObjectURL(file)}>` : '';
+  elem.nextElementSibling.innerHTML = image;
 }
