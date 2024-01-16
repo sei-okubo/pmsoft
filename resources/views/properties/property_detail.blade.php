@@ -16,6 +16,39 @@
         <h3>物件名:</h3>
         <p>{{ $property->property_name }}</p>
       </div>
+
+      <div class="sell">
+        <div class="flex">
+          <div class="left">
+            <h3>売却時期</h3>
+            <input type="text" name="timing" id="timing">
+            ヶ月目
+          </div>
+          <div class="right">
+            <h3>売却額</h3>
+            <input type="text" name="price" id="price">
+            円
+          </div>
+        </div>
+        <div class="flex">
+          <div class="left">
+            <h3>売却時諸費用</h3>
+            <input type="text" name="cost" id="cost">
+            円
+          </div>
+          <div class="right flex sim-btn-wrapper">
+            <input type="hidden" name="property_id" id="property_id"  value="{{ $property->id }}">
+            <button id="sim-btn">計算する</button>
+          </div>
+        </div>
+        <div class="result-wrapper">
+          <p>
+            <span id="sim-result"> -- </span>
+            <span>円</span>
+          </p>
+        </div>
+      </div>
+
       <div class="up">
         <div class="left">
           <div class="form-group">
@@ -133,4 +166,35 @@
     @endif
   </div>
 </main>
+@endsection
+
+@section('sim')
+<script>
+  $.ajaxSetup({
+    headers: { 'X-CSRF-TOKEN': $("[name='csrf-token']").attr("content") },
+  })
+
+  $('#sim-btn').on('click', function() {
+    id = $('input[name="property_id"]').val();
+    timing = $('input[name="timing"]').val();
+    price = $('input[name="price"]').val();
+    cost = $('input[name="cost"]').val();
+
+    if(timing === '' || price === '' || cost === '') {
+      toastr.error('未入力の項目があります');
+    } else {
+      $.ajax({
+        url: "{{ route('simulation') }}",
+        method: "POST",
+        data: { 'id' : id, 'timing' : timing, 'price' : price, 'cost' : cost },
+        dataType: "json",
+      }).done(function(res) {
+        $('#sim-result').text(res.profit);
+      }).fail(function() {
+        alert('通信に失敗しました');
+      });
+    }
+  });
+
+</script>
 @endsection

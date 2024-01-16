@@ -34,7 +34,7 @@
     </div>
   </section>
   <article>
-    <h2>いいね記事一覧</h2>
+    <h2>記事一覧</h2>
     <div class="wrapper">
     @foreach ($articles as $article)
       <div class="article-wrapper">

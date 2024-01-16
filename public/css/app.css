@@ -16,6 +16,10 @@ p {
   margin: 0;
 }
 
+h3 {
+  margin: 0;
+}
+
 ul {
   padding: 0;
 }
@@ -433,6 +437,32 @@ article .article-wrapper > a > p {
   font-weight: bold;
 }
 
+.form-group button#like_btn {
+  width: 30%;
+}
+
+.form-group button#like_btn.like_add {
+  border: 1px solid #FFABCE;
+  background-color: #fff;
+  color: #777;
+}
+
+.form-group button#like_btn.like_add:hover {
+  border: 1px solid #FF97C2;
+  background-color: #eee;
+  color: #666;
+}
+
+.form-group button#like_btn.like_remove {
+  border: 1px solid #FFABCE;
+  background-color: #FFABCE;
+}
+
+.form-group button#like_btn.like_remove:hover {
+  border: 1px solid #FF97C2;
+  background-color: #FF97C2;
+}
+
 .form-group button:hover {
   background-color: #45a049;
 }
@@ -490,4 +520,24 @@ input[type="button"].remove-btn:hover {
 
 .article p {
   text-align: left;
+}
+
+.sell {
+  border: 2px solid #A4C6FF;
+  padding: 16px;
+  margin: 64px;
+}
+
+.sell > .flex {
+  margin-bottom: 8px;
+}
+
+.sim-btn-wrapper {
+  margin-top: 16px;
+  justify-content: flex-end;
+}
+
+#sim-result {
+  font-weight: bold;
+  font-size: 64px;
 }
