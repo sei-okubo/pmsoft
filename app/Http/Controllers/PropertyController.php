@@ -230,4 +230,67 @@ class PropertyController extends Controller
             ]);
         }
     }
+
+    /**
+     * @param Request $request
+     */
+    public function simulation(Request $request)
+    {
+        $timing = $request->get('timing');
+        $price = $request->get('price');
+        $cost = $request->get('cost');
+        $id = $request->get('id');
+        $property = $this->property->find($id);
+        $incomes = $this->income->where('property_id', '=', $id)->get();
+        $expenditures = $this->expenditure->where('property_id', '=', $id)->get();
+
+        $balance = $property->loan;
+        $incomeTotal = 0;
+        $expenditureTotal = 0;
+        for ($i = 1; $i <= $timing; $i++) {
+            // 毎月の元金減少額
+            $decrease = $property->repay - $balance * ($property->interest * 0.01 / 12);
+            $balance = $balance - $decrease;
+
+            // その他収入合計
+            foreach ($incomes as $income) {
+                if ($income->frequency === 1) {
+                    $incomeTotal += $income->amount;
+                } else {
+                    if ($i % 12 === 0) {
+                        $incomeTotal += $income->amount;
+                    }
+                }
+            }
+
+            // その他支出合計
+            foreach ($expenditures as $expenditure) {
+                if ($expenditure->frequency === 1) {
+                    $expenditureTotal += $expenditure->amount;
+                } else {
+                    if ($i % 12 === 0) {
+                        $expenditureTotal += $expenditure->amount;
+                    }
+                }
+            }
+        }
+        // 残債
+        $balance = round($balance);
+        
+        // 賃料の合計
+        $rent = $property->rent * $timing;
+        // 返済額の合計
+        $repay = $property->repay * $timing;
+        // 固定支出の合計
+        $fixed_expenditure = $property->fixed_expenditure * $timing;
+
+        $profit = $price - $balance - $cost - $property->capital - $property->expense + $rent - $repay - $fixed_expenditure + $incomeTotal - $expenditureTotal;
+
+        $result = array(
+            'profit' => $profit,
+        );
+
+        header('Content-type: application/json');
+        echo json_encode($result);
+    }
 }
