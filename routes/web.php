@@ -81,6 +81,8 @@ Route::middleware(['auth'])->group(function() {
     Route::patch('/exeEditProperty', [PropertyController::class, 'exeEditProperty'])->name('exeEditProperty');
     // 物件削除処理
     Route::delete('/exeDeleteProperty', [PropertyController::class, 'exeDeleteProperty'])->name('exeDeleteProperty');
+    // 物件シミュレーション
+    Route::post('/simulation', [PropertyController::class, 'simulation'])->name('simulation');
 
     // 管理者
     Route::prefix('admin')->name('admin.')->group(function () {
