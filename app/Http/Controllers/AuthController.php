@@ -18,7 +18,7 @@ class AuthController extends Controller
      */
     public function top()
     {
-        $articles = Article::orderBy('id', 'desc')->take(3)->get();
+        $articles = Article::orderBy('id', 'desc')->get();
         return view('top', [
             'articles' => $articles,
         ]);

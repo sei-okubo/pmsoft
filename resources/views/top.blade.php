@@ -20,7 +20,7 @@
 </section>
 <main>
   <article>
-    <h2>新着記事</h2>
+    <h2>記事</h2>
     <div class="wrapper">
     @foreach ($articles as $article)
       <div class="article-wrapper">
