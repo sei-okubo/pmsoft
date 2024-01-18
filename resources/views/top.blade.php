@@ -32,7 +32,6 @@
         </a>
       </div>
     @endforeach
-      <a href="">記事一覧</a>
     </div>
   </article>
 </main>
