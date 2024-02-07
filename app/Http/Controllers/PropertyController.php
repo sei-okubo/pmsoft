@@ -145,34 +145,38 @@ class PropertyController extends Controller
             ]);
             $property->save();
 
-            $income_ids = $request->other_income_id;
-            $income_names = $request->other_income_name;
-            $income_frequencies = $request->other_income_frequency;
-            $income_amounts = $request->other_income_amount;
-            $income_count = count($income_ids);
-            for ($i = 0; $i < $income_count ; $i++) {
-                $income = Income::find($income_ids[$i]);
-                $income->fill([
-                    'income_name' => $income_names[$i],
-                    'frequency' => $income_frequencies[$i],
-                    'amount' => $income_amounts[$i],
-                ]);
-                $income->save();
+            if ($request->other_income_id !== null) {
+                $income_ids = $request->other_income_id;
+                $income_names = $request->other_income_name;
+                $income_frequencies = $request->other_income_frequency;
+                $income_amounts = $request->other_income_amount;
+                $income_count = count($income_ids);
+                for ($i = 0; $i < $income_count ; $i++) {
+                    $income = Income::find($income_ids[$i]);
+                    $income->fill([
+                        'income_name' => $income_names[$i],
+                        'frequency' => $income_frequencies[$i],
+                        'amount' => $income_amounts[$i],
+                    ]);
+                    $income->save();
+                }
             }
 
-            $expenditure_ids = $request->other_expenditure_id;
-            $expenditure_names = $request->other_expenditure_name;
-            $expenditure_frequencies = $request->other_expenditure_frequency;
-            $expenditure_amounts = $request->other_expenditure_amount;
-            $expenditure_count = count($expenditure_ids);
-            for ($i = 0; $i < $expenditure_count ; $i++) {
-                $expenditure = Expenditure::find($expenditure_ids[$i]);
-                $expenditure->fill([
-                    'expenditure_name' => $expenditure_names[$i],
-                    'frequency' => $expenditure_frequencies[$i],
-                    'amount' => $expenditure_amounts[$i],
-                ]);
-                $expenditure->save();
+            if ($request->other_expenditure_id !== null) {
+                $expenditure_ids = $request->other_expenditure_id;
+                $expenditure_names = $request->other_expenditure_name;
+                $expenditure_frequencies = $request->other_expenditure_frequency;
+                $expenditure_amounts = $request->other_expenditure_amount;
+                $expenditure_count = count($expenditure_ids);
+                for ($i = 0; $i < $expenditure_count ; $i++) {
+                    $expenditure = Expenditure::find($expenditure_ids[$i]);
+                    $expenditure->fill([
+                        'expenditure_name' => $expenditure_names[$i],
+                        'frequency' => $expenditure_frequencies[$i],
+                        'amount' => $expenditure_amounts[$i],
+                    ]);
+                    $expenditure->save();
+                }
             }
             
             $request->session()->regenerate();

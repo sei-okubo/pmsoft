@@ -278,13 +278,15 @@ if (properties !== null) {
 }
 
 // ユーザー削除
-const delete_btn = document.querySelector('.delete_btn');
-if (delete_btn !== null) {
-  delete_btn.addEventListener('click', (e) => {
-    if (!confirm('削除してよろしいですか？')) {
-      e.preventDefault();
-    }
-  });
+const delete_btns = document.querySelectorAll('.delete_btn');
+if (delete_btns !== null) {
+  for(let i = 0; i < delete_btns.length; i++){
+    delete_btns[i].addEventListener('click', (e) => {
+      if (!confirm('削除してよろしいですか？')) {
+        e.preventDefault();
+      }
+    });
+  }
 }
 
 // プレビュー
